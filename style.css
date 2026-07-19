@@ -56,7 +56,7 @@
     100%{transform:translateY(-100vh) translateX(30px); opacity:0;}
 }
 
-/* contenedor general: una sola fila con todo alineado arriba */
+/* contenedor general: logo GNSS arriba + fila de login abajo */
 .login-page{
     position:relative;
     z-index:2;
@@ -65,10 +65,10 @@
     width:100%;
     padding:32px 0;
 }
-
+ 
 .gnss-logo{
-    width:250px;
-    height:250px;
+    width:220px;
+    height:220px;
     object-fit:contain;
     filter:drop-shadow(0 6px 16px rgba(0,0,0,.5));
     animation:logoFloat 5s ease-in-out infinite;
@@ -83,7 +83,7 @@
     align-items:center;
 }
 
-/* fila: columna izquierda | columna central (GNSS + login-box) | columna derecha */
+/* fila: columna izquierda | login-box | columna derecha */
 .login-shell{
     position:relative;
     display:flex;
@@ -95,7 +95,7 @@
     gap:16px;
     animation:shellIn .9s ease both;
 }
-
+ 
 @keyframes shellIn{
     from{opacity:0; transform:translateY(18px);}
     to{opacity:1; transform:translateY(0);}
@@ -111,7 +111,7 @@
     justify-content:center;
     gap:32px;
 }
-
+ 
 .login-logo{
     width:230px;
     height:230px;
@@ -124,12 +124,12 @@
 .side-col:last-of-type .volcan-mini{
     animation-delay:.6s;
 }
-
+ 
 @keyframes logoFloat{
     0%, 100%{transform:translateY(0);}
     50%{transform:translateY(-8px);}
 }
-
+ 
 .volcan-mini{
     display:flex;
     flex-direction:column;
@@ -137,7 +137,7 @@
     gap:8px;
     animation:logoFloat 6s ease-in-out infinite;
 }
-
+ 
 .volcan-mini img{
     width:340px;
     height:340px;
@@ -154,7 +154,7 @@
     text-transform:uppercase;
     color:var(--volcan-ceniza-clara);
 }
-
+ 
 .login-box{
     position:relative;
     flex:0 0 360px;
@@ -177,7 +177,7 @@
     from{opacity:0; transform:translateY(28px) scale(.96);}
     to{opacity:1; transform:translateY(0) scale(1);}
 }
-
+ 
 .login-glow{
     position:absolute;
     top:-60px;
@@ -189,12 +189,12 @@
     animation:glowPulse 3.5s ease-in-out infinite;
     pointer-events:none;
 }
-
+ 
 @keyframes glowPulse{
     0%, 100%{opacity:.5; transform:translateX(-50%) scale(1);}
     50%{opacity:.9; transform:translateX(-50%) scale(1.15);}
 }
-
+ 
 .login-tag{
     position:relative;
     display:inline-block;
@@ -259,7 +259,7 @@
     overflow:hidden;
     transition:transform .15s, box-shadow .2s;
 }
-
+ 
 .login-box button::after{
     content:"";
     position:absolute;
@@ -274,7 +274,7 @@
 .login-box button:hover::after{
     left:130%;
 }
-
+ 
 .login-box button:hover{
     box-shadow:0 4px 18px rgba(232,89,12,.45);
     transform:translateY(-1px);
@@ -395,6 +395,21 @@
 .content{
     height:calc(100vh - 70px - 53px);
     overflow-y:auto;
+    scrollbar-width:thin;
+    scrollbar-color:var(--volcan-naranja) var(--volcan-negro-suave);
+}
+
+.content::-webkit-scrollbar{
+    width:12px;
+}
+
+.content::-webkit-scrollbar-track{
+    background:var(--volcan-negro-suave);
+}
+
+.content::-webkit-scrollbar-thumb{
+    background:linear-gradient(180deg, var(--volcan-naranja), var(--volcan-rojo));
+    border-radius:8px;
 }
  
 .section{
@@ -628,8 +643,8 @@
     width:100%;
     height:calc(100vh - 70px - 53px);
 }
- 
-#biFrame{
+
+.dashboard-wrap iframe{
     width:100%;
     height:100%;
     border:none;
@@ -693,6 +708,229 @@
     margin-bottom:10px;
 }
 
+/* ---------- DICCIONARIO TÉCNICO ---------- */
+.dict-table-wrap{
+    overflow-x:auto;
+    border-radius:12px;
+    border:1px solid rgba(255,140,66,.18);
+    margin-top:8px;
+}
+
+.dict-table{
+    width:100%;
+    border-collapse:collapse;
+    background:var(--volcan-panel);
+    font-size:13px;
+}
+
+.dict-table thead th{
+    text-align:left;
+    color:var(--volcan-ember);
+    font-size:12px;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+    padding:14px 16px;
+    background:rgba(232,89,12,.12);
+    border-bottom:1px solid rgba(255,140,66,.25);
+    white-space:nowrap;
+}
+
+.dict-table tbody td{
+    padding:14px 16px;
+    color:var(--volcan-ceniza-clara);
+    line-height:1.6;
+    border-bottom:1px solid rgba(255,140,66,.08);
+    vertical-align:top;
+}
+
+.dict-table tbody tr:last-child td{
+    border-bottom:none;
+}
+
+.dict-table tbody tr:hover{
+    background:rgba(232,89,12,.06);
+}
+
+.dict-var{
+    color:var(--volcan-ember);
+    font-weight:700;
+    font-family:'Consolas', monospace;
+    white-space:nowrap;
+}
+
+.dict-tag{
+    display:block;
+    margin-top:6px;
+    font-size:12px;
+    color:var(--volcan-ceniza);
+    font-style:italic;
+}
+
+/* ---------- MAPA DE UBICACIÓN ---------- */
+.map-block{
+    grid-column:1 / -1;
+    margin-top:28px;
+}
+
+.map-block h3{
+    color:var(--volcan-ember);
+    font-size:16px;
+    margin-bottom:12px;
+}
+
+.map-frame-wrap{
+    border-radius:12px;
+    overflow:hidden;
+    border:1px solid rgba(255,140,66,.18);
+    box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+
+.map-frame-wrap iframe{
+    width:100%;
+    height:320px;
+    border:0;
+    display:block;
+    filter:grayscale(.15) contrast(1.05);
+}
+
+.corr-table th, .corr-table td{
+    text-align:center;
+}
+
+.corr-table thead tr:first-child th{
+    background:transparent;
+    border-bottom:none;
+}
+
+.corr-table tbody td:first-child{
+    text-align:left;
+}
+
+.dict-table thead tr th[colspan]{
+    background:rgba(232,89,12,.2);
+    font-size:13px;
+    text-transform:none;
+    letter-spacing:normal;
+    color:var(--volcan-crema);
+}
+
+.table-note{
+    font-size:12px;
+    color:var(--volcan-ceniza);
+    margin-top:10px;
+}
+
+/* ---------- GRÁFICO DE MEDIAS (ANOVA) ---------- */
+.mean-chart-block{
+    margin-top:28px;
+    background:var(--volcan-panel);
+    border:1px solid rgba(255,140,66,.18);
+    border-radius:12px;
+    padding:22px 24px;
+}
+
+.mean-chart-block h3{
+    color:var(--volcan-ember);
+    font-size:16px;
+    margin-bottom:20px;
+}
+
+.mean-chart{
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    gap:56px;
+    height:180px;
+    padding:0 20px;
+}
+
+.mean-bar-col{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-end;
+    height:100%;
+    gap:8px;
+}
+
+.mean-value{
+    font-size:13px;
+    font-weight:700;
+    color:var(--volcan-ember);
+}
+
+.mean-bar{
+    width:46px;
+    border-radius:6px 6px 0 0;
+    background:linear-gradient(180deg, var(--volcan-ember), var(--volcan-rojo));
+    box-shadow:0 4px 14px rgba(232,89,12,.35);
+    transition:height .6s ease;
+}
+
+.mean-label{
+    font-size:12px;
+    color:var(--volcan-ceniza-clara);
+    font-weight:600;
+}
+
+/* ---------- GRÁFICO DE DISPERSIÓN (imagen externa) ---------- */
+.corr-graph-block{
+    margin-top:28px;
+}
+
+.corr-graph-block h3{
+    color:var(--volcan-ember);
+    font-size:16px;
+    margin-bottom:12px;
+}
+
+.corr-graph-block img{
+    width:100%;
+    max-width:640px;
+    display:block;
+    margin:0 auto;
+    border-radius:12px;
+    border:1px solid rgba(255,140,66,.18);
+    box-shadow:0 10px 30px rgba(0,0,0,.4);
+    background:#fff;
+}
+
+.corr-graph-block .art-caption{
+    margin-top:10px;
+    text-align:center;
+}
+
+.corr-graph-block p{
+    margin-top:16px;
+}
+
+.mean-chart-block p{
+    margin-top:20px;
+    margin-bottom:0;
+}
+
+/* ---------- SÍNTESIS ---------- */
+.synthesis-block{
+    grid-column:1 / -1;
+    margin-top:28px;
+    background:linear-gradient(135deg, rgba(198,46,14,.12), rgba(232,89,12,.06));
+    border:1px solid rgba(232,89,12,.3);
+    border-radius:12px;
+    padding:24px 26px;
+}
+
+.synthesis-block h4{
+    color:var(--volcan-ember);
+    font-size:14px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    margin-bottom:10px;
+}
+
+.synthesis-block p{
+    margin-bottom:0;
+}
+
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 880px){
     .stat-row{grid-template-columns:repeat(2, 1fr);}
@@ -702,6 +940,7 @@
     .volcan-layout.reverse .volcan-art{order:0;}
     .fact-grid{grid-template-columns:1fr;}
     .header h2{font-size:15px;}
+    .mean-chart{gap:28px;}
 
     .login-shell{
         flex-direction:column;
